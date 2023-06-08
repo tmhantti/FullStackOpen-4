@@ -1,0 +1,10 @@
+
+POST http://localhost:3003/bloglist/api/blogs/
+Content-Type: application/json
+
+{
+    "title": "Birds and the Bees",
+    "author": "Ian Ashbury",
+    "url": "https://something.net/birdsnbees",
+    "likes": 4
+}
