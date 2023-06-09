@@ -1,9 +1,10 @@
 POST http://localhost:3003/bloglist/api/blogs/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNlcGkiLCJpZCI6IjY0ODJjZTFiNjdiMDUyMmE2OWQ4ZTM3NCIsImlhdCI6MTY4NjMwNjA0MCwiZXhwIjoxNjg2NTIyMDQwfQ._wIUPyH6x455aB8ObXI5mCVu8kB8aYXFbUC1TX8NMoY
 
 {
-  "title": "Learning full stack development",
-  "author": "Satu Vanttila",
-  "url": "http://blog.satunblogi.com",
+  "title": "Sepon Seikkailut",
+  "author": "Teppo Testaaja",
+  "url": "http://blog.sepinsekoilut.com",
   "likes": 10
 }
