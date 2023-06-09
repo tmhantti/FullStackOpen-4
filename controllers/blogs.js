@@ -1,6 +1,7 @@
 const blogsRouter = require('express').Router()
 const Blog= require('../models/blog')
 const User= require('../models/user')
+const middleware = require('../utils/middleware')
 
 const jwt = require('jsonwebtoken')
 
@@ -28,7 +29,7 @@ blogsRouter.get('/:id', async (request, response) => {
   }
 })
 
-blogsRouter.post('/', async (request, response) => {
+blogsRouter.post('/', middleware.userExtractor, async (request, response) => {
   const blog = new Blog(request.body)
 
   /* mikäli objekti ei sisällä kenttää 'url' tai 'title', 
@@ -55,8 +56,10 @@ blogsRouter.post('/', async (request, response) => {
   if (!decodedToken.id) {
     return response.status(401).json({ error: 'token invalid' })
   }
+  // get user from request object
+  const user = request.user
 
-  const user = await User.findById(decodedToken.id)
+  // const user = await User.findById(decodedToken.id)
 
   blog.user = user._id
   const savedBlog = await blog.save()
@@ -66,14 +69,16 @@ blogsRouter.post('/', async (request, response) => {
   response.status(201).json(savedBlog)
 })
 
-blogsRouter.delete('/:id', async (request, response) => {
+blogsRouter.delete('/:id', middleware.userExtractor, async (request, response) => {
   // tarkistetaan, että käyttäjällä on validi token
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
   if (!decodedToken.id) {
     return response.status(401).json({ error: 'token invalid' })
   }
   // haetaan poistopyynnön tehnyt käyttäjä
-  const userDeleter = await User.findById(decodedToken.id)
+  // const userDeleter = await User.findById(decodedToken.id)
+  // get user from request object
+  const userDeleter = request.user
   const userid= userDeleter.id
 
   // haetaan poistettava blogi
