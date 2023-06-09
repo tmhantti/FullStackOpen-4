@@ -1,0 +1,9 @@
+POST http://localhost:3003/bloglist/api/blogs/
+Content-Type: application/json
+
+{
+  "title": "Learning full stack development",
+  "author": "Satu Vanttila",
+  "url": "http://blog.satunblogi.com",
+  "likes": 10
+}

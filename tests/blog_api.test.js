@@ -31,12 +31,10 @@ test('identifying field of created blog objects is named id', async () => {
 test('a valid blog can be added', async () => {
     // huom: seuraava ei kuulu alustettuun testidataan: 
     const newBlog =  {
-        _id: "5a422bc61b54a676234d17fc",
-        title: "Type wars",
-        author: "Robert C. Martin",
-        url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
-        likes: 2,
-        __v: 0
+      "title": "My Whisky Blog",
+      "author": "Jack Daniels",
+      "url": "https://new.net/whiskyblog",
+      "likes": 4
       } 
   
     await api
@@ -49,7 +47,7 @@ test('a valid blog can be added', async () => {
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
 
     const titles = blogsAtEnd.map(n => n.title)
-    expect(titles).toContain('Type wars')    
+    expect(titles).toContain('My Whisky Blog')    
   })
  
 test('blog object always contains likes and its value is zero if not given', async () => {
